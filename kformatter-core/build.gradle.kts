@@ -6,6 +6,7 @@ plugins {
 }
 
 kotlin {
+
     android {
         publishAllLibraryVariants()
     }
@@ -22,10 +23,22 @@ kotlin {
     iosSimulatorArm64()
     watchosSimulatorArm64()
     tvosSimulatorArm64()
+    linuxArm64()
+    linuxX64()
+    mingwX64()
 
     sourceSets {
+        all {
+            languageSettings {
+                languageVersion = "1.8"
+            }
+        }
         val commonMain by getting
-        val commonTest by getting
+        val commonTest by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-test:1.7.20")
+            }
+        }
 
         val androidMain by getting
         val androidTest by getting
