@@ -46,12 +46,15 @@ class MaskBuilderTest {
     @Test
     fun testBuiltSlotsWithEscapeSequence() {
         val mask = Mask.create {
-            append("\\D37")
+            append("\\D37D\\L\\D")
         }
         assertEquals(listOf(
             Mask.Slot.Hardcoded('D'),
             Mask.Slot.Hardcoded('3'),
             Mask.Slot.Hardcoded('7'),
+            Mask.Slot.Digit,
+            Mask.Slot.Hardcoded('L'),
+            Mask.Slot.Hardcoded('D'),
         ), mask.toList())
     }
 

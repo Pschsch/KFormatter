@@ -6,7 +6,6 @@ plugins {
 }
 
 kotlin {
-
     android {
         publishAllLibraryVariants()
     }
@@ -97,6 +96,12 @@ kotlin {
         val tvosSimulatorArm64Test by getting {
             dependsOn(darwinTest)
         }
+        val linuxArm64Main by getting
+        val linuxArm64Test by getting
+        val linuxX64Main by getting
+        val linuxX64Test by getting
+        val mingwX64Main by getting
+        val mingwX64Test by getting
     }
 }
 

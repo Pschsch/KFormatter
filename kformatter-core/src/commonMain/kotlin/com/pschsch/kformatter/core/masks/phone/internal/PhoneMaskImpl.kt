@@ -6,7 +6,7 @@ import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
 
 @OptIn(IncubatingKFormatterAPI::class)
 internal class PhoneMaskImpl(
-    private val slots: List<Mask.Slot>,
+    private val slots: Iterable<Mask.Slot>,
     override val countryIsoCode: String,
     override val countryCode: String,
     override val hint: String

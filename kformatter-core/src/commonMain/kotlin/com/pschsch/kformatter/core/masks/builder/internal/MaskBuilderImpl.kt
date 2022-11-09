@@ -19,8 +19,23 @@ internal class MaskBuilderImpl : MaskBuilder {
     }
 
     override fun append(slotSymbols: CharSequence): MaskBuilder {
-        slotSymbols.forEach {
-            append(it)
+        var isLastEscapeCharacter = false
+        for (symbol in slotSymbols) {
+            if (symbol == '\\' && !isLastEscapeCharacter) {
+                isLastEscapeCharacter = true
+                continue
+            }
+            if (isLastEscapeCharacter && symbol == 'D') {
+                append(Mask.Slot.Hardcoded('D'))
+                isLastEscapeCharacter = false
+                continue
+            }
+            if (isLastEscapeCharacter && symbol == 'L') {
+                append(Mask.Slot.Hardcoded('L'))
+                isLastEscapeCharacter = false
+                continue
+            }
+            append(symbol)
         }
         return this
     }
