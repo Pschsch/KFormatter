@@ -19,8 +19,6 @@ kotlin {
     iosSimulatorArm64()
     watchosSimulatorArm64()
     tvosSimulatorArm64()
-    linuxX64()
-    mingwX64()
 
     sourceSets {
         val commonMain by getting
@@ -31,29 +29,72 @@ kotlin {
             }
         }
 
-        val androidMain by getting
-        val androidTest by getting
-
-        val nonAndroidMain by creating {
+        val serializableMain by creating {
             dependsOn(commonMain)
         }
-        val nonAndroidTest by creating {
+
+        val serializableTest by creating {
             dependsOn(commonTest)
-            dependsOn(nonAndroidMain)
+            dependsOn(serializableMain)
+        }
+
+        val nonSerializableMain by creating {
+            dependsOn(commonMain)
+        }
+
+        val nonSerializableTest by creating {
+            dependsOn(commonTest)
+            dependsOn(nonSerializableMain)
+        }
+
+        val parcelableMain by creating {
+            dependsOn(commonMain)
+        }
+
+        val parcelableTest by creating {
+            dependsOn(commonTest)
+            dependsOn(parcelableMain)
+        }
+
+        val nonParcelableMain by creating {
+            dependsOn(commonMain)
+        }
+
+        val nonParcelableTest by creating {
+            dependsOn(commonTest)
+            dependsOn(nonParcelableMain)
+        }
+
+        val androidMain by getting {
+            dependsOn(commonMain)
+            dependsOn(serializableMain)
+            dependsOn(parcelableMain)
+        }
+        val androidTest by getting {
+            dependsOn(commonTest)
+            dependsOn(serializableTest)
+            dependsOn(parcelableTest)
         }
 
         val jvmMain by getting {
-            dependsOn(nonAndroidMain)
+            dependsOn(commonMain)
+            dependsOn(nonParcelableMain)
+            dependsOn(serializableMain)
         }
         val jvmTest by getting {
-            dependsOn(nonAndroidTest)
+            dependsOn(commonTest)
+            dependsOn(serializableTest)
+            dependsOn(nonParcelableTest)
         }
-
         val darwinMain by creating {
-            dependsOn(nonAndroidMain)
+            dependsOn(commonMain)
+            dependsOn(nonSerializableMain)
+            dependsOn(nonParcelableMain)
         }
         val darwinTest by creating {
-            dependsOn(nonAndroidTest)
+            dependsOn(commonTest)
+            dependsOn(nonSerializableTest)
+            dependsOn(nonParcelableTest)
         }
         val iosMain by getting {
             dependsOn(darwinMain)
@@ -102,18 +143,6 @@ kotlin {
         }
         val tvosSimulatorArm64Test by getting {
             dependsOn(darwinTest)
-        }
-        val linuxX64Main by getting {
-            dependsOn(nonAndroidMain)
-        }
-        val linuxX64Test by getting {
-            dependsOn(nonAndroidTest)
-        }
-        val mingwX64Main by getting {
-            dependsOn(nonAndroidMain)
-        }
-        val mingwX64Test by getting {
-            dependsOn(nonAndroidTest)
         }
     }
 }
