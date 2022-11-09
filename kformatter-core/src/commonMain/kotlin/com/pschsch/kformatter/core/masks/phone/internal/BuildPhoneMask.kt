@@ -15,7 +15,7 @@ internal fun createPhoneMask(countryIsoCode: String, includeCountryCode: Boolean
     val mask = Mask.create {
         append(actualMask)
     }
-    return PhoneMaskImpl(mask, countryIsoCode, country.countryPhoneCode, mask.map {
+    return PhoneMaskImpl(mask.toList(), countryIsoCode, country.countryPhoneCode, mask.map {
         when (it) {
             Mask.Slot.Digit -> '0'
             Mask.Slot.Letter -> '_'

@@ -3,6 +3,7 @@
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
     id("com.android.library")
+    id("kotlin-parcelize")
 }
 
 kotlin {
@@ -10,10 +11,6 @@ kotlin {
         publishAllLibraryVariants()
     }
     jvm()
-    js(IR) {
-        browser()
-        nodejs()
-    }
     ios()
     watchos()
     tvos()
@@ -22,37 +19,41 @@ kotlin {
     iosSimulatorArm64()
     watchosSimulatorArm64()
     tvosSimulatorArm64()
-    linuxArm64()
     linuxX64()
     mingwX64()
 
     sourceSets {
-        all {
-            languageSettings {
-                languageVersion = "1.8"
-            }
-        }
         val commonMain by getting
         val commonTest by getting {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-test:1.7.20")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
             }
         }
 
         val androidMain by getting
         val androidTest by getting
 
-        val jvmMain by getting
-        val jvmTest by getting
-
-        val jsMain by getting
-        val jsTest by getting
-
-        val darwinMain by creating {
+        val nonAndroidMain by creating {
             dependsOn(commonMain)
         }
-        val darwinTest by creating {
+        val nonAndroidTest by creating {
             dependsOn(commonTest)
+            dependsOn(nonAndroidMain)
+        }
+
+        val jvmMain by getting {
+            dependsOn(nonAndroidMain)
+        }
+        val jvmTest by getting {
+            dependsOn(nonAndroidTest)
+        }
+
+        val darwinMain by creating {
+            dependsOn(nonAndroidMain)
+        }
+        val darwinTest by creating {
+            dependsOn(nonAndroidTest)
         }
         val iosMain by getting {
             dependsOn(darwinMain)
@@ -78,6 +79,12 @@ kotlin {
         val macosArm64Test by getting {
             dependsOn(darwinTest)
         }
+        val macosX64Main by getting {
+            dependsOn(darwinMain)
+        }
+        val macosX64Test by getting {
+            dependsOn(darwinTest)
+        }
         val iosSimulatorArm64Main by getting {
             dependsOn(darwinMain)
         }
@@ -96,12 +103,18 @@ kotlin {
         val tvosSimulatorArm64Test by getting {
             dependsOn(darwinTest)
         }
-        val linuxArm64Main by getting
-        val linuxArm64Test by getting
-        val linuxX64Main by getting
-        val linuxX64Test by getting
-        val mingwX64Main by getting
-        val mingwX64Test by getting
+        val linuxX64Main by getting {
+            dependsOn(nonAndroidMain)
+        }
+        val linuxX64Test by getting {
+            dependsOn(nonAndroidTest)
+        }
+        val mingwX64Main by getting {
+            dependsOn(nonAndroidMain)
+        }
+        val mingwX64Test by getting {
+            dependsOn(nonAndroidTest)
+        }
     }
 }
 

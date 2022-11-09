@@ -40,7 +40,7 @@ class MaskBuilderTest {
         val mask = Mask.create {
             append("\\D37")
         }
-        assertEquals(4, mask.count())
+        assertEquals(3, mask.count())
     }
 
     @Test

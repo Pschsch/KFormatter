@@ -3,10 +3,12 @@ package com.pschsch.kformatter.core.masks.phone.internal
 import com.pschsch.kformatter.core.masks.Mask
 import com.pschsch.kformatter.core.masks.phone.PhoneMask
 import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
+import com.pschsch.kformatter.core.platform.Parcelize
 
 @OptIn(IncubatingKFormatterAPI::class)
+@Parcelize
 internal class PhoneMaskImpl(
-    private val slots: Iterable<Mask.Slot>,
+    private val slots: List<Mask.Slot>,
     override val countryIsoCode: String,
     override val countryCode: String,
     override val hint: String
