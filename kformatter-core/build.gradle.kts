@@ -4,7 +4,11 @@ plugins {
     id("org.jetbrains.kotlin.multiplatform")
     id("com.android.library")
     id("kotlin-parcelize")
+    id("maven-publish")
 }
+
+group = "com.pschsch"
+version = "0.0.1-alpha01"
 
 kotlin {
     android {

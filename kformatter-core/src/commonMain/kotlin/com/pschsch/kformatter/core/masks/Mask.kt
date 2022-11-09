@@ -22,6 +22,9 @@ interface Mask : Iterable<Mask.Slot>, Parcelable, Serializable {
 
     companion object {
         fun create(block: MaskBuilder.() -> Unit): Mask = createMask(block)
+        fun create(stringRepresentation : String): Mask = create {
+            append(stringRepresentation)
+        }
     }
 
 }

@@ -11,7 +11,7 @@ interface PhoneMask : Mask {
     val hint: String
 
     companion object {
-        fun create(countryIsoCode: String, includeCountryCode: Boolean): PhoneMask =
-            createPhoneMask(countryIsoCode, includeCountryCode)
+        fun create(countryIsoCode: String, includeCountryCodeInMask: Boolean): PhoneMask =
+            createPhoneMask(countryIsoCode, includeCountryCodeInMask)
     }
 }
