@@ -1,6 +1,7 @@
 package com.pschsch.kformatter.test
 
 import com.pschsch.kformatter.core.masks.Mask
+import com.pschsch.kformatter.core.masks.create
 import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -37,17 +38,13 @@ class MaskBuilderTest {
 
     @Test
     fun testBuiltSlotsWithEscapeSequenceLength() {
-        val mask = Mask.create {
-            append("\\D37")
-        }
+        val mask = Mask.create("\\D37")
         assertEquals(3, mask.count())
     }
 
     @Test
     fun testBuiltSlotsWithEscapeSequence() {
-        val mask = Mask.create {
-            append("\\D37D\\L\\D")
-        }
+        val mask = Mask.create("\\D37D\\L\\D")
         assertEquals(listOf(
             Mask.Slot.Hardcoded('D'),
             Mask.Slot.Hardcoded('3'),

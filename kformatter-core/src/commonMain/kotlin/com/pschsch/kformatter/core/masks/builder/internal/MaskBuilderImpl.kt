@@ -45,7 +45,7 @@ internal class MaskBuilderImpl : MaskBuilder {
         return this
     }
 
-    override fun append(slots: List<Mask.Slot>): MaskBuilder {
+    override fun append(slots: Iterable<Mask.Slot>): MaskBuilder {
         this.slots.addAll(slots)
         return this
     }

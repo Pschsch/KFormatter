@@ -22,6 +22,6 @@ interface MaskBuilder {
 
     fun append(vararg slots: Mask.Slot): MaskBuilder
 
-    fun append(slots: List<Mask.Slot>): MaskBuilder
+    fun append(slots: Iterable<Mask.Slot>): MaskBuilder
 
 }

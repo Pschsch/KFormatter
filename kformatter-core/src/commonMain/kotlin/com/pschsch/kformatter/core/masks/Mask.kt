@@ -14,17 +14,36 @@ interface Mask : Iterable<Mask.Slot>, Parcelable, Serializable {
     sealed class Slot : Parcelable, Serializable {
         @Parcelize
         object Digit : Slot()
+
         @Parcelize
         object Letter : Slot()
+
         @Parcelize
         data class Hardcoded(val symbol: Char) : Slot()
     }
 
     companion object {
         fun create(block: MaskBuilder.() -> Unit): Mask = createMask(block)
-        fun create(stringRepresentation : String): Mask = create {
-            append(stringRepresentation)
-        }
     }
 
+}
+
+@IncubatingKFormatterAPI
+fun Mask.Companion.create(stringRepresentation: String) = create {
+    append(stringRepresentation)
+}
+
+@IncubatingKFormatterAPI
+fun Mask.Companion.create(fromSingleChar : Char) = create {
+    append(fromSingleChar)
+}
+
+@IncubatingKFormatterAPI
+fun Mask.Companion.create(slot : Mask.Slot) = create {
+    append(slot)
+}
+
+@IncubatingKFormatterAPI
+fun Mask.Companion.create(slots : Iterable<Mask.Slot>) = create {
+    append(slots)
 }
