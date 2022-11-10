@@ -12,4 +12,4 @@ internal class PhoneMaskImpl(
     override val countryIsoCode: String,
     override val countryCode: String,
     override val hint: String
-) : PhoneMask, Iterable<Mask.Slot> by slots
+) : PhoneMask, Collection<Mask.Slot> by slots

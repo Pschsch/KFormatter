@@ -1,5 +1,6 @@
 package com.pschsch.kformatter.test
 
+import com.pschsch.kformatter.core.formatting.MaskFormatter
 import com.pschsch.kformatter.core.masks.Mask
 import com.pschsch.kformatter.core.masks.create
 import com.pschsch.kformatter.core.masks.formatter
@@ -24,7 +25,7 @@ class MaskFormatterTest {
         val mask = Mask.create("12DDL345DL")
         val formatter = mask.formatter()
         val text = "98Q123RTY"
-        assertEquals("1298Q3451", formatter.format(text))
+        assertEquals("1298Q3451R", formatter.format(text))
     }
 
     @Test
@@ -76,6 +77,45 @@ class MaskFormatterTest {
         assertEquals("(99) 999-99-99", mask.formatter().format(text))
     }
 
+    @Test
+    fun testResultNotCompleted() {
+        val formatter = PhoneMask.create("ru", true).formatter()
+        val text = "953116"
+        assertEquals(MaskFormatter.CompletionState.NotCompleted, formatter.isCompleted(text))
+    }
+
+    @Test
+    fun testResultNotCompleted2() {
+        val formatter = PhoneMask.create("ru", true).formatter()
+        val text = "953someletters116"
+        assertEquals(MaskFormatter.CompletionState.NotCompleted, formatter.isCompleted(text))
+    }
+
+    @Test
+    fun testResultNotCompleted3() {
+        val formatter = PhoneMask.create("ru", true).formatter()
+        val text = ""
+        assertEquals(MaskFormatter.CompletionState.NotCompleted, formatter.isCompleted(text))
+    }
+
+    @Test
+    fun testResultCompleted() {
+        val formatter = PhoneMask.create("ru", true).formatter()
+        val text = "9531165656"
+        assertEquals(MaskFormatter.CompletionState.Completed, formatter.isCompleted(text))
+    }
+
+    @Test
+    fun testResultOverflow() {
+        val formatter = PhoneMask.create("ru", true).formatter()
+        val text = "95311656565"
+        assertEquals(MaskFormatter.CompletionState.Overflow, formatter.isCompleted(text))
+    }
+
+    fun testNoCompletedAgain() {
+        val formatter = PhoneMask.create("ru", true).formatter()
+        val text = "95311656.."
+    }
 
 
 }

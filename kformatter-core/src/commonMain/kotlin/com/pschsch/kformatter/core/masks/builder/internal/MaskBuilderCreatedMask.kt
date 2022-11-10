@@ -6,7 +6,7 @@ import com.pschsch.kformatter.core.parcelable.Parcelize
 
 @OptIn(IncubatingKFormatterAPI::class)
 @Parcelize
-internal class MaskBuilderCreatedMask(private val slots: List<Mask.Slot>) : Mask, Iterable<Mask.Slot> by slots {
+internal class MaskBuilderCreatedMask(private val slots: List<Mask.Slot>) : Mask, Collection<Mask.Slot> by slots {
     override fun toString(): String {
         return slots.joinToString {
             when (it) {

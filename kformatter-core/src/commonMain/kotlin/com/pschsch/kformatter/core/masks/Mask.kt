@@ -11,7 +11,7 @@ import com.pschsch.kformatter.core.parcelable.Parcelize
 import com.pschsch.kformatter.core.serializable.Serializable
 
 @IncubatingKFormatterAPI
-interface Mask : Iterable<Mask.Slot>, Parcelable, Serializable {
+interface Mask : Collection<Mask.Slot>, Parcelable, Serializable {
 
     @Parcelize
     sealed class Slot : Parcelable, Serializable {

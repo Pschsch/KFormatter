@@ -10,40 +10,18 @@ internal class MaskFormatterImpl(
     private val terminated : Boolean
 ) : MaskFormatter {
 
+    private data class FormatResult(
+        val formattedValue : String,
+        val completionState : MaskFormatter.CompletionState
+    )
+
     override fun format(value: String): String {
-        if (terminated) return formatTerminated(value) else TODO("Non-terminated formatter is not supported")
+        if (terminated) return formatTerminated(value).formattedValue else TODO("Non-terminated formatter is not supported")
     }
 
-    private fun formatTerminated(value : String) : String {
-        val valueCharSet = ArrayDeque(value.toMutableList())
-        var nonMatching = false
-        return mask.mapNotNull {
-            if (nonMatching) return@mapNotNull null
-            when (it) {
-                is Mask.Slot.Digit -> {
-                    if (valueCharSet.isEmpty()) {
-                        nonMatching = true
-                        return@mapNotNull null
-                    }
-                    if (!valueCharSet.first().isDigit()) {
-                        nonMatching = true
-                        return@mapNotNull null
-                    }
-                    if (valueCharSet.first().isDigit()) valueCharSet.removeFirst() else  null
-                }
-                is Mask.Slot.Hardcoded -> it.symbol
-                is Mask.Slot.Letter -> {
-                    if (valueCharSet.isEmpty()) {
-                        nonMatching = true
-                        return@mapNotNull null
-                    }
-                    if (!valueCharSet.first().isLetter()) {
-                        nonMatching = true
-                        return@mapNotNull null
-                    }
-                    if (valueCharSet.first().isLetter()) valueCharSet.removeFirst() else  null
-                }
-            }
-        }.joinToString("")
+    override fun isCompleted(value: String): MaskFormatter.CompletionState {
+        if (terminated) return formatTerminated(value).completionState else TODO("Non-terminated formatter is not supported")
     }
+
+    private fun formatTerminated(value : String) = MaskFormatSession(mask, value, terminated).format()
 }
