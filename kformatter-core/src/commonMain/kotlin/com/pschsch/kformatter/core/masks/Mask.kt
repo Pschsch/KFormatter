@@ -1,5 +1,8 @@
 package com.pschsch.kformatter.core.masks
 
+import com.pschsch.kformatter.core.formatting.MaskFormatter
+import com.pschsch.kformatter.core.formatting.builder.MaskFormatterBuilder
+import com.pschsch.kformatter.core.formatting.builder.MaskFormatterBuilderImpl
 import com.pschsch.kformatter.core.masks.builder.MaskBuilder
 import com.pschsch.kformatter.core.masks.internal.createMask
 import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
@@ -46,4 +49,11 @@ fun Mask.Companion.create(slot : Mask.Slot) = create {
 @IncubatingKFormatterAPI
 fun Mask.Companion.create(slots : Iterable<Mask.Slot>) = create {
     append(slots)
+}
+
+@IncubatingKFormatterAPI
+fun Mask.formatter(block : MaskFormatterBuilder.() -> Unit = {}): MaskFormatter {
+    val builder = MaskFormatterBuilderImpl(this)
+    block(builder)
+    return builder.build()
 }

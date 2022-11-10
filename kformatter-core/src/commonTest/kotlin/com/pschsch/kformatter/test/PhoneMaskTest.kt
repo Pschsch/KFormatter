@@ -1,5 +1,7 @@
 package com.pschsch.kformatter.test
 
+import com.pschsch.kformatter.core.masks.Mask
+import com.pschsch.kformatter.core.masks.create
 import com.pschsch.kformatter.core.masks.phone.PhoneMask
 import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
 import kotlin.test.Test
