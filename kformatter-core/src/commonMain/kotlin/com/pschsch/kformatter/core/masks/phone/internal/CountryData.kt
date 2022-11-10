@@ -17,6 +17,7 @@ internal val countryDataList
         CountryData("by", "+375", ' ', "(DD) DDD-DD-DD"),
         CountryData("kz", "+7", ' ', "(DDD) DDD-DD-DD"),
         CountryData("kg", "+996", ' ', "(DDD) DDD-DDD"),
+        CountryData("md", "+373", ' ', "DDD DDD-DD"),
         CountryData("ge", "+995", '-', "DDD-DDD-DDD"),
         CountryData("ru", "+7", ' ', "(DDD) DDD-DD-DD"),
         CountryData("ua", "+380", ' ', "(DD) DDD-DD-DD"),
