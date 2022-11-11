@@ -11,7 +11,7 @@ interface Countries : Iterable<Country> {
 }
 
 @IncubatingKFormatterAPI
-fun Countries.findByCode(code : String): Country? = find { it.code == code }
+inline fun Countries.findByCode(code : String): Country? = find { it.code == code }
 
 @IncubatingKFormatterAPI
-fun Countries.getByCode(code: String): Country = findByCode(code) ?: throw IllegalStateException("Country with code $code does not exists")
+inline fun Countries.getByCode(code: String): Country = findByCode(code) ?: throw IllegalStateException("Country with code $code does not exists")
