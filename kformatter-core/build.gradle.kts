@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.pschsch"
-version = "0.0.1-alpha04"
+version = "0.0.1-alpha05"
 
 kotlin {
     android {

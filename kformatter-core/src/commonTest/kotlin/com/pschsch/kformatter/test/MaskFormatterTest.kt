@@ -1,16 +1,22 @@
 package com.pschsch.kformatter.test
 
+import com.pschsch.kformatter.core.countries.Countries
+import com.pschsch.kformatter.core.countries.getByCode
 import com.pschsch.kformatter.core.formatting.MaskFormatter
 import com.pschsch.kformatter.core.masks.Mask
 import com.pschsch.kformatter.core.masks.create
 import com.pschsch.kformatter.core.masks.formatter
-import com.pschsch.kformatter.core.masks.phone.PhoneMask
 import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @OptIn(IncubatingKFormatterAPI::class)
 class MaskFormatterTest {
+
+    val russianMaskWithPhoneCode = Countries.default.getByCode("ru").mask(true)
+    val russianMaskWithoutPhoneCode = Countries.default.getByCode("ru").mask(false)
+    val ukrainianMaskWithPhoneCode = Countries.default.getByCode("ru").mask(true)
+    val ukrainianMaskWithoutPhoneCode = Countries.default.getByCode("ru").mask(false)
 
     @Test
     fun testSimpleFormat() {
@@ -58,63 +64,55 @@ class MaskFormatterTest {
 
     @Test
     fun testRussianMaskFormat() {
-        val mask = PhoneMask.create("ru", true)
         val text = "99999999999999999999999"
-        assertEquals("+7 (999) 999-99-99", mask.formatter().format(text))
+        assertEquals("+7 (999) 999-99-99", russianMaskWithPhoneCode.formatter().format(text))
     }
 
     @Test
     fun testUkrainianMaskFormat() {
-        val mask = PhoneMask.create("ua", true)
         val text = "99999999999999999999999"
-        assertEquals("+380 (99) 999-99-99", mask.formatter().format(text))
+        assertEquals("+380 (99) 999-99-99", ukrainianMaskWithPhoneCode.formatter().format(text))
     }
 
     @Test
-    fun testUkrainianMaskFormatWithoutContryCode() {
-        val mask = PhoneMask.create("ua", false)
+    fun testUkrainianMaskFormatWithoutPhoneCode() {
         val text = "99999999999999999999999"
-        assertEquals("(99) 999-99-99", mask.formatter().format(text))
+        assertEquals("(99) 999-99-99", ukrainianMaskWithoutPhoneCode.formatter().format(text))
     }
 
     @Test
     fun testResultNotCompleted() {
-        val formatter = PhoneMask.create("ru", true).formatter()
+        val formatter = russianMaskWithPhoneCode.formatter()
         val text = "953116"
         assertEquals(MaskFormatter.CompletionState.NotCompleted, formatter.isCompleted(text))
     }
 
     @Test
     fun testResultNotCompleted2() {
-        val formatter = PhoneMask.create("ru", true).formatter()
+        val formatter = russianMaskWithPhoneCode.formatter()
         val text = "953someletters116"
         assertEquals(MaskFormatter.CompletionState.NotCompleted, formatter.isCompleted(text))
     }
 
     @Test
     fun testResultNotCompleted3() {
-        val formatter = PhoneMask.create("ru", true).formatter()
+        val formatter = russianMaskWithPhoneCode.formatter()
         val text = ""
         assertEquals(MaskFormatter.CompletionState.NotCompleted, formatter.isCompleted(text))
     }
 
     @Test
     fun testResultCompleted() {
-        val formatter = PhoneMask.create("ru", true).formatter()
+        val formatter = russianMaskWithPhoneCode.formatter()
         val text = "9531165656"
         assertEquals(MaskFormatter.CompletionState.Completed, formatter.isCompleted(text))
     }
 
     @Test
     fun testResultOverflow() {
-        val formatter = PhoneMask.create("ru", true).formatter()
+        val formatter = russianMaskWithPhoneCode.formatter()
         val text = "95311656565"
         assertEquals(MaskFormatter.CompletionState.Overflow, formatter.isCompleted(text))
-    }
-
-    fun testNoCompletedAgain() {
-        val formatter = PhoneMask.create("ru", true).formatter()
-        val text = "95311656.."
     }
 
 

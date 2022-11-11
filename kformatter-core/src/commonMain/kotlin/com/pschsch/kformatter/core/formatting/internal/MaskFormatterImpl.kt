@@ -10,11 +10,6 @@ internal class MaskFormatterImpl(
     private val terminated : Boolean
 ) : MaskFormatter {
 
-    private data class FormatResult(
-        val formattedValue : String,
-        val completionState : MaskFormatter.CompletionState
-    )
-
     override fun format(value: String): String {
         if (terminated) return formatTerminated(value).formattedValue else TODO("Non-terminated formatter is not supported")
     }
