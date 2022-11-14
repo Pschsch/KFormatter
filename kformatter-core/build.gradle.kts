@@ -5,10 +5,12 @@ plugins {
     id("com.android.library")
     id("kotlin-parcelize")
     id("maven-publish")
+    id("com.jfrog.artifactory") //internal use
+    id("com.pschsch.artifactory.publish") //internal use
 }
 
 group = "com.pschsch"
-version = "0.0.1-alpha08"
+version = "0.0.1-alpha09"
 
 kotlin {
     android {
@@ -116,5 +118,13 @@ android {
     }
     libraryVariants.all {
         generateBuildConfigProvider?.get()?.enabled = false
+    }
+}
+
+artifactoryPublishConfig { //internal use
+    kotlinMultiplatform {
+        includeAndroid = true
+        includeIOS = true
+        includeJVM = true
     }
 }
