@@ -18,7 +18,7 @@ class Country(
     private val englishName : String
 ) : Parcelable, Serializable {
 
-    fun mask(withPhoneCode: Boolean): CountryPhoneMask {
+    fun phoneMask(withPhoneCode: Boolean): CountryPhoneMask {
         val mask = Mask.create {
             if (withPhoneCode) {
                 append(phoneCode)

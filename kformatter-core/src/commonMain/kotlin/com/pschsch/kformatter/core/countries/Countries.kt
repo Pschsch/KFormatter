@@ -5,9 +5,7 @@ import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
 
 @IncubatingKFormatterAPI
 interface Countries : Iterable<Country> {
-    companion object {
-        val default : Countries = CountriesImpl()
-    }
+    companion object : Countries by CountriesImpl()
 }
 
 @IncubatingKFormatterAPI

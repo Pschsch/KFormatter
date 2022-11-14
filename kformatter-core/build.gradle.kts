@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.pschsch"
-version = "0.0.1-alpha05"
+version = "0.0.1-alpha06"
 
 kotlin {
     android {
@@ -33,72 +33,23 @@ kotlin {
             }
         }
 
-        val serializableMain by creating {
-            dependsOn(commonMain)
-        }
-
-        val serializableTest by creating {
-            dependsOn(commonTest)
-            dependsOn(serializableMain)
-        }
-
-        val nonSerializableMain by creating {
-            dependsOn(commonMain)
-        }
-
-        val nonSerializableTest by creating {
-            dependsOn(commonTest)
-            dependsOn(nonSerializableMain)
-        }
-
-        val parcelableMain by creating {
-            dependsOn(commonMain)
-        }
-
-        val parcelableTest by creating {
-            dependsOn(commonTest)
-            dependsOn(parcelableMain)
-        }
-
-        val nonParcelableMain by creating {
-            dependsOn(commonMain)
-        }
-
-        val nonParcelableTest by creating {
-            dependsOn(commonTest)
-            dependsOn(nonParcelableMain)
-        }
-
         val androidMain by getting {
             dependsOn(commonMain)
-            dependsOn(serializableMain)
-            dependsOn(parcelableMain)
         }
         val androidTest by getting {
             dependsOn(commonTest)
-            dependsOn(serializableTest)
-            dependsOn(parcelableTest)
         }
-
         val jvmMain by getting {
             dependsOn(commonMain)
-            dependsOn(nonParcelableMain)
-            dependsOn(serializableMain)
         }
         val jvmTest by getting {
             dependsOn(commonTest)
-            dependsOn(serializableTest)
-            dependsOn(nonParcelableTest)
         }
         val darwinMain by creating {
             dependsOn(commonMain)
-            dependsOn(nonSerializableMain)
-            dependsOn(nonParcelableMain)
         }
         val darwinTest by creating {
             dependsOn(commonTest)
-            dependsOn(nonSerializableTest)
-            dependsOn(nonParcelableTest)
         }
         val iosMain by getting {
             dependsOn(darwinMain)
