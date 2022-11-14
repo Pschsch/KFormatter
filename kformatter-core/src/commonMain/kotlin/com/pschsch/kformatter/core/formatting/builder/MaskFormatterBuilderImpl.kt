@@ -7,7 +7,7 @@ import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
 
 @OptIn(IncubatingKFormatterAPI::class)
 internal class MaskFormatterBuilderImpl(
-    val mask : Mask
+    val masks : List<Mask>
 ) : MaskFormatterBuilder {
 
     private var terminated = true
@@ -17,7 +17,7 @@ internal class MaskFormatterBuilderImpl(
     }
 
     fun build() : MaskFormatter {
-        return MaskFormatterImpl(mask, terminated)
+        return MaskFormatterImpl(masks, terminated)
     }
 
 }

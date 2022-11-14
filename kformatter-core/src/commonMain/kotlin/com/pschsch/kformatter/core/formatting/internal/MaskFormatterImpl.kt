@@ -6,7 +6,7 @@ import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
 
 @OptIn(IncubatingKFormatterAPI::class)
 internal class MaskFormatterImpl(
-    override val mask: Mask,
+    override val masks: List<Mask>,
     private val terminated : Boolean
 ) : MaskFormatter {
 
@@ -18,5 +18,5 @@ internal class MaskFormatterImpl(
         if (terminated) return formatTerminated(value).completionState else TODO("Non-terminated formatter is not supported")
     }
 
-    private fun formatTerminated(value : String) = MaskFormatSession(mask, value, terminated).format()
+    private fun formatTerminated(value : String) = MaskFormatSession(masks, value, terminated).format()
 }

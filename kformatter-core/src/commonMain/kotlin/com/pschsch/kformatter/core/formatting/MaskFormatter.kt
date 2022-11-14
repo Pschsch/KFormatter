@@ -21,7 +21,7 @@ interface MaskFormatter {
         object Overflow : CompletionState()
     }
 
-    val mask : Mask
+    val masks : List<Mask>
     fun format(value : String): String
 
     fun isCompleted(value : String): CompletionState

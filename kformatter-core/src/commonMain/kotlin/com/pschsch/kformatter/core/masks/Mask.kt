@@ -52,8 +52,14 @@ fun Mask.Companion.create(slots : Iterable<Mask.Slot>) = create {
 }
 
 @IncubatingKFormatterAPI
-fun Mask.formatter(block : MaskFormatterBuilder.() -> Unit = {}): MaskFormatter {
-    val builder = MaskFormatterBuilderImpl(this)
+fun Mask.formatter(block : MaskFormatterBuilder.() -> Unit = {}): MaskFormatter = formatterImpl(listOf(this), block)
+
+@IncubatingKFormatterAPI
+fun List<Mask>.formatter(block : MaskFormatterBuilder.() -> Unit = {}): MaskFormatter = formatterImpl(this, block)
+
+@OptIn(IncubatingKFormatterAPI::class)
+private fun formatterImpl(masks : List<Mask>, block : MaskFormatterBuilder.() -> Unit = {}): MaskFormatter {
+    val builder = MaskFormatterBuilderImpl(masks)
     block(builder)
     return builder.build()
 }

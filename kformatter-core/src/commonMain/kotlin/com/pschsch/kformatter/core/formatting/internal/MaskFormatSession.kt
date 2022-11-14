@@ -6,7 +6,7 @@ import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
 
 @OptIn(IncubatingKFormatterAPI::class)
 internal class MaskFormatSession(
-    private val mask: Mask,
+    private val masks: List<Mask>,
     private val valueToFormat: String,
     terminated: Boolean
 ) {
@@ -23,6 +23,8 @@ internal class MaskFormatSession(
     }
 
     fun format(): Result {
+        if (masks.isEmpty()) return Result(valueToFormat, MaskFormatter.CompletionState.NotCompleted)
+        val mask = masks.first()
         if (mask.isEmpty()) return Result(valueToFormat, MaskFormatter.CompletionState.NotCompleted)
         val formattedString = StringBuilder()
         for (slot in mask) {
