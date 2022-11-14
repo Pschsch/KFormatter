@@ -5,8 +5,8 @@ plugins {
     id("com.android.library")
     id("kotlin-parcelize")
     id("maven-publish")
-    id("com.jfrog.artifactory") //internal use
-    id("com.pschsch.artifactory.publish") //internal use
+    id("com.jfrog.artifactory") //internal use. Can be safely removed to run locally
+    id("com.pschsch.artifactory.publish") //internal use. Can be safely removed to run locally
 }
 
 group = "com.pschsch"
@@ -121,7 +121,7 @@ android {
     }
 }
 
-artifactoryPublishConfig { //internal use
+artifactoryPublishConfig { //internal use. Can be safely removed to run locally
     kotlinMultiplatform {
         includeAndroid = true
         includeIOS = true

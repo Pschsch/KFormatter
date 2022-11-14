@@ -2,7 +2,7 @@
 
 pluginManagement {
     repositories {
-        maven {
+        maven { //internal use. Can be safely removed to run locally
             fun getEnv(name : String): String {
                 return try {
                     System.getenv(name) ?: java.util.Properties().let {
