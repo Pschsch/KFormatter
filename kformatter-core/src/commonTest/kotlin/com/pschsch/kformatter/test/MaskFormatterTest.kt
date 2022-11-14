@@ -13,10 +13,10 @@ import kotlin.test.assertEquals
 @OptIn(IncubatingKFormatterAPI::class)
 class MaskFormatterTest {
 
-    val russianMaskWithPhoneCode = Countries.default.getByCode("ru").phoneMask(true)
-    val russianMaskWithoutPhoneCode = Countries.default.getByCode("ru").phoneMask(false)
-    val ukrainianMaskWithPhoneCode = Countries.default.getByCode("ru").phoneMask(true)
-    val ukrainianMaskWithoutPhoneCode = Countries.default.getByCode("ru").phoneMask(false)
+    val russianMaskWithPhoneCode = Countries.getByCode("ru").phoneMask(true)
+    val russianMaskWithoutPhoneCode = Countries.getByCode("ru").phoneMask(false)
+    val ukrainianMaskWithPhoneCode = Countries.getByCode("ru").phoneMask(true)
+    val ukrainianMaskWithoutPhoneCode = Countries.getByCode("ru").phoneMask(false)
 
     @Test
     fun testSimpleFormat() {
