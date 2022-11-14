@@ -18,4 +18,14 @@ internal class MaskBuilderCreatedMask(private val slots: List<Mask.Slot>) : Mask
             }
         }
     }
+
+    override val hint: String
+        get() = slots.map {
+            when (it) {
+                Mask.Slot.Digit -> '0'
+                Mask.Slot.Letter -> '_'
+                is Mask.Slot.Hardcoded -> it.symbol
+            }
+        }.joinToString("")
+
 }

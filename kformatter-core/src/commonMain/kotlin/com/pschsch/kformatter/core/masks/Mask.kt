@@ -13,6 +13,8 @@ import com.pschsch.kformatter.core.serializable.Serializable
 @IncubatingKFormatterAPI
 interface Mask : Collection<Mask.Slot>, Parcelable, Serializable {
 
+    val hint : String
+
     @Parcelize
     sealed class Slot : Parcelable, Serializable {
         @Parcelize

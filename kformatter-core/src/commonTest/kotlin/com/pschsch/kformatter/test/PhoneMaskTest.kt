@@ -11,13 +11,13 @@ class PhoneMaskTest {
 
     @Test
     fun testRussianMaskWithCountryCode() {
-        val mask = Countries.default.getByCode("ru").phoneMask(true)
+        val mask = Countries.getByCode("ru").phoneMask(true)
         assertEquals("+7 (000) 000-00-00", mask.hint)
     }
 
     @Test
     fun testRussianMaskWithoutCountryCode() {
-        val mask = Countries.default.getByCode("ru").phoneMask(false)
+        val mask = Countries.getByCode("ru").phoneMask(false)
         assertEquals("(000) 000-00-00", mask.hint)
     }
 

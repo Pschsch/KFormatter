@@ -1,6 +1,5 @@
 package com.pschsch.kformatter.core.countries
 
-import com.pschsch.kformatter.core.countries.internal.CountryPhoneMaskImpl
 import com.pschsch.kformatter.core.masks.Mask
 import com.pschsch.kformatter.core.optin.IncubatingKFormatterAPI
 import com.pschsch.kformatter.core.parcelable.Parcelable
@@ -18,15 +17,14 @@ class Country(
     private val englishName : String
 ) : Parcelable, Serializable {
 
-    fun phoneMask(withPhoneCode: Boolean): CountryPhoneMask {
-        val mask = Mask.create {
+    fun phoneMask(withPhoneCode: Boolean): Mask {
+        return Mask.create {
             if (withPhoneCode) {
                 append(phoneCode)
                 append(codeAndMaskSeparator)
             }
             append(mask)
         }
-        return CountryPhoneMaskImpl(mask)
     }
 
     override fun toString(): String {
