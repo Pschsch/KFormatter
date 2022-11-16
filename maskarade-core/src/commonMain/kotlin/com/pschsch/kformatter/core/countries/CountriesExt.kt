@@ -1,3 +1,5 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.pschsch.kformatter.core.countries
 
 import com.pschsch.kformatter.core.optin.IncubatingMaskaradeAPI

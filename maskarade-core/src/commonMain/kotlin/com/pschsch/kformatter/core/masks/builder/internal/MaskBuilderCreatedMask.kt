@@ -6,7 +6,10 @@ import com.pschsch.kformatter.core.parcelable.Parcelize
 
 @OptIn(IncubatingMaskaradeAPI::class)
 @Parcelize
-internal class MaskBuilderCreatedMask(private val slots: List<Mask.Slot>) : Mask, Collection<Mask.Slot> by slots {
+internal class MaskBuilderCreatedMask(
+    private val slots: List<Mask.Slot>,
+    override val hint: String
+) : Mask, Collection<Mask.Slot> by slots {
     override fun toString(): String {
         return slots.joinToString {
             when (it) {
@@ -18,14 +21,5 @@ internal class MaskBuilderCreatedMask(private val slots: List<Mask.Slot>) : Mask
             }
         }
     }
-
-    override val hint: String
-        get() = slots.map {
-            when (it) {
-                Mask.Slot.Digit -> '0'
-                Mask.Slot.Letter -> '_'
-                is Mask.Slot.Hardcoded -> it.symbol
-            }
-        }.joinToString("")
 
 }

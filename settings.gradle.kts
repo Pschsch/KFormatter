@@ -1,5 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         maven { //internal use. Can be safely removed to run locally
@@ -36,3 +38,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Maskarade"
 include(":maskarade-core")
+include(":maskarade-compose")

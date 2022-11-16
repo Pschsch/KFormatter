@@ -24,4 +24,6 @@ interface MaskBuilder {
 
     fun append(slots: Iterable<Mask.Slot>): MaskBuilder
 
+    fun buildHint(mapBlock: (Int, Mask.Slot) -> Char): MaskBuilder
+
 }

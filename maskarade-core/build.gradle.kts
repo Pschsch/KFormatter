@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.pschsch"
-version = "0.0.1-alpha12"
+version = "0.0.1-alpha14"
 
 kotlin {
     android {
@@ -105,12 +105,12 @@ kotlin {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 32
     namespace = "com.pschsch.kformatter.core"
     sourceSets.getByName("main").manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 14
-        targetSdk = 33
+        targetSdk = 32
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

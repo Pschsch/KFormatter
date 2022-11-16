@@ -8,6 +8,13 @@ import com.pschsch.kformatter.core.optin.IncubatingMaskaradeAPI
 internal class MaskBuilderImpl : MaskBuilder {
 
     private val slots = mutableListOf<Mask.Slot>()
+    private var hintBuilder : (Int, Mask.Slot) -> Char = { _, slot ->
+        when (slot) {
+            Mask.Slot.Digit -> '0'
+            Mask.Slot.Letter -> '_'
+            is Mask.Slot.Hardcoded -> slot.symbol
+        }
+    }
 
     override fun append(slotSymbol: Char): MaskBuilder {
         when (slotSymbol) {
@@ -55,5 +62,10 @@ internal class MaskBuilderImpl : MaskBuilder {
         return this
     }
 
-    fun build() : Mask = MaskBuilderCreatedMask(slots)
+    override fun buildHint(mapBlock: (Int, Mask.Slot) -> Char): MaskBuilder {
+        hintBuilder = mapBlock
+        return this
+    }
+
+    fun build() : Mask = MaskBuilderCreatedMask(slots, slots.mapIndexed(hintBuilder).joinToString(""))
 }
