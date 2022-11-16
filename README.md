@@ -1,2 +1,2 @@
-# KFormatter
-Multiplatform library for strings formatting using masks written in Kotlin
+# Maskarade
+Kotlin-powered multiplatform-support solution to format strings using masks in easy way.

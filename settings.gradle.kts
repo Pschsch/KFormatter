@@ -34,5 +34,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "KFormatter"
-include(":kformatter-core")
+rootProject.name = "Maskarade"
+include(":maskarade-core")
