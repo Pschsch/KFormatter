@@ -1,6 +1,7 @@
 package com.pschsch.maskarade.core.formatting
 
 import com.pschsch.maskarade.core.masks.Mask
+import com.pschsch.maskarade.core.masks.factories.Mask
 import com.pschsch.maskarade.core.optin.IncubatingMaskaradeAPI
 import com.pschsch.maskarade.core.parcelable.Parcelable
 import com.pschsch.maskarade.core.parcelable.Parcelize

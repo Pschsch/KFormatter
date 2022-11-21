@@ -1,11 +1,11 @@
-package com.pschsch.maskarade.core.masks
+package com.pschsch.maskarade.core.masks.factories
 
-import com.pschsch.maskarade.core.masks.builder.MaskBuilder
-import com.pschsch.maskarade.core.masks.internal.createMask
+import com.pschsch.maskarade.core.masks.Mask
+import com.pschsch.maskarade.core.masks.factories.internal.createMask
 import com.pschsch.maskarade.core.optin.IncubatingMaskaradeAPI
 
 @IncubatingMaskaradeAPI
-fun Mask(block : MaskBuilder.() -> Unit): Mask  = createMask(block)
+fun Mask(block : MaskBuilder.() -> Unit): Mask = createMask(block)
 
 @IncubatingMaskaradeAPI
 fun Mask(stringRepresentation: String): Mask = createMask {

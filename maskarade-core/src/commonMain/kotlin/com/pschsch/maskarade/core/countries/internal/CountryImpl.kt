@@ -2,6 +2,7 @@ package com.pschsch.maskarade.core.countries.internal
 
 import com.pschsch.maskarade.core.countries.Country
 import com.pschsch.maskarade.core.masks.Mask
+import com.pschsch.maskarade.core.masks.factories.Mask
 import com.pschsch.maskarade.core.optin.IncubatingMaskaradeAPI
 import com.pschsch.maskarade.core.parcelable.Parcelize
 

@@ -2,6 +2,7 @@ package com.pschsch.maskarade.core.formatting.internal
 
 import com.pschsch.maskarade.core.formatting.MaskFormatter
 import com.pschsch.maskarade.core.masks.Mask
+import com.pschsch.maskarade.core.masks.factories.Mask
 import com.pschsch.maskarade.core.optin.IncubatingMaskaradeAPI
 
 @OptIn(IncubatingMaskaradeAPI::class)

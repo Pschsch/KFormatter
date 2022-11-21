@@ -1,4 +1,4 @@
-package com.pschsch.maskarade.core.masks.builder
+package com.pschsch.maskarade.core.masks.factories
 
 import com.pschsch.maskarade.core.masks.Mask
 import com.pschsch.maskarade.core.optin.IncubatingMaskaradeAPI

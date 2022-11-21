@@ -1,8 +1,8 @@
-package com.pschsch.maskarade.core.masks.internal
+package com.pschsch.maskarade.core.masks.factories.internal
 
 import com.pschsch.maskarade.core.masks.Mask
-import com.pschsch.maskarade.core.masks.builder.MaskBuilder
-import com.pschsch.maskarade.core.masks.builder.internal.MaskBuilderImpl
+import com.pschsch.maskarade.core.masks.factories.Mask
+import com.pschsch.maskarade.core.masks.factories.MaskBuilder
 import com.pschsch.maskarade.core.optin.IncubatingMaskaradeAPI
 
 @OptIn(IncubatingMaskaradeAPI::class)
