@@ -10,8 +10,8 @@ plugins {
     id("com.pschsch.artifactory.publish") //internal use. Can be safely removed to run locally
 }
 
-group = "com.pschsch"
-version = "0.0.1-alpha14"
+group = findProperty("group")!!
+version = findProperty("version")!!
 
 kotlin {
     android {
