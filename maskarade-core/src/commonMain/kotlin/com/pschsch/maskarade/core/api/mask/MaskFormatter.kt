@@ -30,6 +30,6 @@ import com.pschsch.maskarade.core.api.optin.IncubatingMaskaradeAPI
 @IncubatingMaskaradeAPI
 interface MaskFormatter {
 
-    val slots: List<MaskSlot>
+    val mask: Mask
 
 }
