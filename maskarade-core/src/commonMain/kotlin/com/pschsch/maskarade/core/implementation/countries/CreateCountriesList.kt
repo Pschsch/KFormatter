@@ -1,6 +1,6 @@
-package com.pschsch.maskarade.core.countries.internal
+package com.pschsch.maskarade.core.implementation.countries
 
-import com.pschsch.maskarade.core.optin.IncubatingMaskaradeAPI
+import com.pschsch.maskarade.core.api.optin.IncubatingMaskaradeAPI
 
 @OptIn(IncubatingMaskaradeAPI::class)
 internal fun createCountriesList(

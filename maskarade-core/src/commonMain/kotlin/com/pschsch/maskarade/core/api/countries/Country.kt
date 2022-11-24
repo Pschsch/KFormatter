@@ -1,8 +1,7 @@
-package com.pschsch.maskarade.core.countries
+package com.pschsch.maskarade.core.api.countries
 
-import com.pschsch.maskarade.core.masks.Mask
-import com.pschsch.maskarade.core.masks.factories.Mask
-import com.pschsch.maskarade.core.optin.IncubatingMaskaradeAPI
+import com.pschsch.maskarade.core.api.mask.Mask
+import com.pschsch.maskarade.core.api.optin.IncubatingMaskaradeAPI
 import com.pschsch.maskarade.core.parcelable.Parcelable
 import com.pschsch.maskarade.core.serializable.Serializable
 

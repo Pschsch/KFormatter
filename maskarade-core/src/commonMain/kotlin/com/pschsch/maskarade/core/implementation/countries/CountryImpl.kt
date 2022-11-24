@@ -1,31 +1,31 @@
-package com.pschsch.maskarade.core.countries.internal
+package com.pschsch.maskarade.core.implementation.countries
 
-import com.pschsch.maskarade.core.countries.Country
-import com.pschsch.maskarade.core.masks.Mask
-import com.pschsch.maskarade.core.masks.factories.Mask
-import com.pschsch.maskarade.core.optin.IncubatingMaskaradeAPI
+import com.pschsch.maskarade.core.api.countries.Country
+import com.pschsch.maskarade.core.api.mask.Mask
+import com.pschsch.maskarade.core.api.optin.IncubatingMaskaradeAPI
 import com.pschsch.maskarade.core.parcelable.Parcelize
 
 @IncubatingMaskaradeAPI
 @Parcelize
 internal class CountryImpl(
-    private val id : Int,
+    private val id: Int,
     override val isoCode: String,
     override val countryCode: String,
     private val codeAndMaskSeparator: Char,
     private val mask: String,
-    private val englishName : String
+    private val englishName: String
 ) : Country {
 
-    override fun phoneMask(usingCountryCode : Boolean): Mask {
-        return Mask {
-            val code = if (usingCountryCode) countryCode else null
-            if (code != null) {
-                append(code)
-                append(codeAndMaskSeparator)
-            }
-            append(mask)
-        }
+    private val countryCodeMask: Mask by lazy {
+        TODO()
+    }
+
+    private val noCountryCodeMask: Mask by lazy {
+        TODO()
+    }
+
+    override fun phoneMask(usingCountryCode: Boolean): Mask {
+        return if (usingCountryCode) countryCodeMask else noCountryCodeMask
     }
 
     override fun toString(): String {
