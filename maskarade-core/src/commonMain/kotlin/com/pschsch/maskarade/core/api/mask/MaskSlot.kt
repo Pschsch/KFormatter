@@ -7,6 +7,19 @@ import com.pschsch.maskarade.core.serializable.Serializable
 
 /**
  * Describes available values in every slot of formatting string
+ * MaskSlot objects can be represented via patterns.
+ * Symbol patterns contain only one symbol.
+ *
+ * MaskSlot symbol patterns:
+ * [MaskSlot.Digit] -> D
+ * [MaskSlot.LatinLetter] -> S
+ * [MaskSlot.CyrillicLetter] -> C
+ * [MaskSlot.LowercaseLetter] -> l
+ * [MaskSlot.UppercaseLetter] -> L
+ * [MaskSlot.Char] -> any other symbol, different from listed above
+ * To represent symbol pattern as [MaskSlot.Char], use escaping:
+ * \\L matches [MaskSlot.Char] with 'L' value
+ *
  * */
 
 @IncubatingMaskaradeAPI
@@ -22,12 +35,6 @@ sealed class MaskSlot : Parcelable, Serializable {
 
     @Parcelize
     data class Char(val value : kotlin.Char): MaskSlot()
-
-    @Parcelize
-    data class Charset(val value : List<kotlin.Char>): MaskSlot()
-
-    @Parcelize
-    data class CharRange(val start : kotlin.Char, val end : kotlin.Char): MaskSlot()
 
     @Parcelize
     object UppercaseLetter : MaskSlot() {
@@ -48,11 +55,5 @@ sealed class MaskSlot : Parcelable, Serializable {
     object CyrillicLetter : MaskSlot() {
         override fun toString() = "CyrillicLetter"
     }
-
-    @Parcelize
-    data class AnyMatching(val slots : List<MaskSlot>): MaskSlot()
-
-    @Parcelize
-    data class AllMatching(val slots : List<MaskSlot>): MaskSlot()
 
 }
